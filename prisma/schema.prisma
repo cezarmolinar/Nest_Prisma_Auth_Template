@@ -13,13 +13,35 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Roles {
+  ADMIN
+  READER
+  EDITOR
+  WRITER
+}
+
 model User {
   id        Int      @id @default(autoincrement())
   name      String   @db.VarChar(100)
   email     String   @unique @db.VarChar(100)
   password  String
+  role      Roles    @default(READER) //→ define o tipo de role do usuário
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Post      Post[]
+
+  @@map("users") //→ define o nome da tabela no banco
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar(100)
+  content   String   @db.Text
+  authorId  Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("users") //→ define o nome da tabela no banco
+  author User @relation(fields: [authorId], references: [id])
+
+  @@map("posts") //→ define o nome da tabela no banco
 }

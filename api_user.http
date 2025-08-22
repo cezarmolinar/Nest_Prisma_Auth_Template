@@ -1,0 +1,20 @@
+GET http://localhost:3000/
+
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "name": "usuário ",
+  "email": "teste@teste.com",
+  "password": "123456"
+}
+
+###
+GET http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsIm5hbWUiOiJ1c3XDoXJpbyAiLCJlbWFpbCI6InRlc3RlQHRlc3RlLmNvbSIsInJvbGUiOiJSRUFERVIiLCJpYXQiOjE3NTU4OTM0MzQsImV4cCI6MTc1NTkwMDYzNH0.C2mjYgUjAy7Jv5DoAsdQtrln4LkxWcoCdbrA_7Pw8AY
+
+###
+GET http://localhost:3000/users/1
+
+

@@ -3,6 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto'
 // import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service'
 import * as bcrypt from 'bcrypt'
+import { UpdateUserDto } from './dto/update-user.dto'
 
 @Injectable()
 export class UsersService {
@@ -36,19 +37,21 @@ export class UsersService {
 
   async findByEmail(email: string) {
     return this.prisma.user.findUnique({
-      // eslint-disable-next-line prettier/prettier
       where: { email }
     })
   }
-  // findOne(id: number) {
-  //   return `This action returns a #${id} user`;
-  // }
+  findOne(id: number) {
+    return this.prisma.user.findUnique({
+      where: { id }
+    })
+  }
 
-  // update(id: number, updateUserDto: UpdateUserDto) {
-  //   return `This action updates a #${id} user`;
-  // }
+  update(id: number, updateUserDto: UpdateUserDto) {
+    const user = updateUserDto
+    return `This action updates a #${id} user with data: ${JSON.stringify(user)}`
+  }
 
-  // remove(id: number) {
-  //   return `This action removes a #${id} user`;
-  // }
+  remove(id: number) {
+    return `This action removes a #${id} user`
+  }
 }

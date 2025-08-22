@@ -1,0 +1,33 @@
+###
+# @name adminLogin
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "teste@teste.com",
+  "password": "123456"
+}
+
+###
+@tokenAdmin: {{ adminLogin.response.body.accessToken }}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+Authorization: Bearer {{ tokenAdmin }}
+
+{
+  "title": "primeiro post ",
+  "content": "Conteudo do primeiro post",
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsIm5hbWUiOiJ1c3XDoXJpbyAiLCJlbWFpbCI6InRlc3RlQHRlc3RlLmNvbSIsInJvbGUiOiJSRUFERVIiLCJpYXQiOjE3NTU4OTM5MTcsImV4cCI6MTc1NTkwMTExN30.GcUImX9IHyD4gCeVpcrkJ3aSiFfp2zNW0yKQxDwtXfE
+
+{
+  "title": "primeiro post ",
+  "content": "Conteudo do primeiro post",
+  "name": "usuário ",
+}
