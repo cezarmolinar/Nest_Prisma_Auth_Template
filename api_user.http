@@ -12,7 +12,19 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsIm5hbWUiOiJ1c3XDoXJpbyAiLCJlbWFpbCI6InRlc3RlQHRlc3RlLmNvbSIsInJvbGUiOiJSRUFERVIiLCJpYXQiOjE3NTU4OTM0MzQsImV4cCI6MTc1NTkwMDYzNH0.C2mjYgUjAy7Jv5DoAsdQtrln4LkxWcoCdbrA_7Pw8AY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJ1c3XDoXJpbyAiLCJlbWFpbCI6InRlc3RlQHRlc3RlLmNvbSIsInJvbGUiOiJSRUFERVIiLCJpYXQiOjE3NTYyMzk3NzAsImV4cCI6MTc1NjI0Njk3MH0.FeYL6Ewp39cw2wksOc7Bzut9lxFyUjbHhpA19SQ0rVk
+
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIm5hbWUiOiJ1c3XDoXJpbyAiLCJlbWFpbCI6InRlc3RlQHRlc3RlLmNvbSIsInJvbGUiOiJSRUFERVIiLCJpYXQiOjE3NTYyMzk3NzAsImV4cCI6MTc1NjI0Njk3MH0.FeYL6Ewp39cw2wksOc7Bzut9lxFyUjbHhpA19SQ0rVk
+
+{
+  "name": "admin ",
+  "email": "admin@teste.com",
+  "password": "123456",
+  "role": "ADMIN"
+}
 
 ###
 GET http://localhost:3000/users/1

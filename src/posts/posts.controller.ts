@@ -3,7 +3,6 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
   Req,
@@ -11,20 +10,24 @@ import {
 } from '@nestjs/common'
 import { PostsService } from './posts.service'
 import { CreatePostDto } from './dto/create-post.dto'
-import { AuthGuard } from 'src/auth/auth.guard'
 import type { Request } from 'express'
+import { AuthGuard } from 'src/auth/auth.guard'
+import { RequiredRoles } from 'src/auth/required-roles.decorator'
+import { Roles } from '@prisma/client'
+import { RoleGuard } from 'src/auth/role/role.guard'
 
-@UseGuards(AuthGuard)
+@UseGuards(AuthGuard, RoleGuard)
 @Controller('posts')
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
+  @RequiredRoles(Roles.WRITER, Roles.EDITOR)
   @Post()
   create(@Body() createPostDto: CreatePostDto, @Req() req: Request) {
-    console.log(req)
+    console.log('POST Controller', createPostDto)
     return this.postsService.create({
       ...createPostDto,
-      authorId: req.user!.id // Assuming req.user contains the authenticated user
+      authorId: req.user!.id
     })
   }
 
